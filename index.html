@@ -1,0 +1,278 @@
+<html lang="zh-CN"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>PIWorld - 派生态社区</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6C63FF',
+                        secondary: '#4F46E5',
+                        accent: '#8B5CF6',
+                        dark: '#4338CA',
+                        light: '#FFD700'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            .text-shadow-lg {
+                text-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            }
+            .btn-glow-white {
+                box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+            }
+            .btn-glow-white:hover {
+                box-shadow: 0 0 25px rgba(255, 255, 255, 0.8);
+            }
+            
+            .btn-glow-blue {
+                box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
+            }
+            .btn-glow-blue:hover {
+                box-shadow: 0 0 25px rgba(59, 130, 246, 0.8);
+            }
+            
+            .btn-glow-green {
+                box-shadow: 0 0 15px rgba(34, 197, 94, 0.5);
+            }
+            .btn-glow-green:hover {
+                box-shadow: 0 0 25px rgba(34, 197, 94, 0.8);
+            }
+            
+            .btn-glow-yellow {
+                box-shadow: 0 0 15px rgba(250, 204, 21, 0.5);
+            }
+            .btn-glow-yellow:hover {
+                box-shadow: 0 0 25px rgba(250, 204, 21, 0.8);
+            }
+        }
+        
+        /* 自定义渐变背景 */
+        body {
+            background: linear-gradient(135deg, #FFD700 0%, #8B5CF6 35%, #4338CA 70%, #FFD700 100%);
+            background-size: 200% 200%;
+            animation: gradientShift 15s ease infinite;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* 按钮动画 */
+        .btn {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn:after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.5);
+            opacity: 0;
+            border-radius: 100%;
+            transform: scale(1, 1) translate(-50%);
+            transform-origin: 50% 50%;
+        }
+        
+        .btn:focus:not(:active)::after {
+            animation: ripple 1s ease-out;
+        }
+        
+        @keyframes ripple {
+            0% {
+                transform: scale(0, 0);
+                opacity: 0.5;
+            }
+            20% {
+                transform: scale(25, 25);
+                opacity: 0.5;
+            }
+            100% {
+                opacity: 0;
+                transform: scale(40, 40);
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center px-6 py-12 text-white">
+    <!-- 主容器 -->
+    <div class="w-full max-w-sm flex flex-col items-center justify-center space-y-8">
+        <!-- 主标题 -->
+        <h1 class="text-5xl md:text-6xl font-bold tracking-wider text-center animate-float text-shadow-lg">
+            PI<span class="text-light">WORLD</span>
+        </h1>
+        
+        <!-- 声明文本 -->
+        <p class="text-lg md:text-xl text-center leading-relaxed text-shadow">
+            中华区33家派生态社区俱乐部联合发起声明组建生态
+        </p>
+        
+        <!-- 按钮容器 -->
+        <div class="w-full flex flex-col space-y-4">
+            <button id="btn-ecosystem" class="btn btn-glow-white w-full py-4 px-6 bg-white bg-opacity-30 hover:bg-opacity-40 rounded-xl text-lg font-medium backdrop-blur-sm border border-white border-opacity-50">
+                生态详情介绍
+            </button>
+            
+            <button id="btn-communities" class="btn btn-glow-blue w-full py-4 px-6 bg-blue-500 bg-opacity-30 hover:bg-opacity-40 rounded-xl text-lg font-medium backdrop-blur-sm border border-blue-400 border-opacity-50">
+                33家派社区详情
+            </button>
+            
+            <button id="btn-cemetery" class="btn btn-glow-green w-full py-4 px-6 bg-green-500 bg-opacity-30 hover:bg-opacity-40 rounded-xl text-lg font-medium backdrop-blur-sm border border-green-400 border-opacity-50">
+                生态公募
+            </button>
+            
+            <button id="btn-about" class="btn btn-glow-yellow w-full py-4 px-6 bg-yellow-400 bg-opacity-30 hover:bg-opacity-40 rounded-xl text-lg font-medium backdrop-blur-sm border border-yellow-300 border-opacity-50">
+                关于我们
+            </button>
+        </div>
+    </div>
+    
+    <!-- 底部信息 -->
+    <div class="absolute bottom-6 left-0 right-0 flex justify-center">
+        <p class="text-sm text-white text-opacity-70">© 2026 PIWorld. 保留所有权利</p>
+    </div>
+    
+    <!-- 音频元素 -->
+    <audio id="click-sound-1" preload="auto">
+        <source src="https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="click-sound-2" preload="auto">
+        <source src="https://assets.mixkit.co/active_storage/sfx/2569/2569-preview.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="click-sound-3" preload="auto">
+        <source src="https://assets.mixkit.co/active_storage/sfx/2567/2567-preview.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="click-sound-4" preload="auto">
+        <source src="https://assets.mixkit.co/active_storage/sfx/2570/2570-preview.mp3" type="audio/mpeg">
+    </audio>
+    
+    <!-- 模态框容器 -->
+    <div id="modal" class="fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center px-6 hidden">
+        <div class="bg-white bg-opacity-10 backdrop-blur-lg rounded-2xl p-6 max-w-sm w-full max-h-[70vh] overflow-y-auto border border-white border-opacity-20">
+            <div class="flex justify-between items-center mb-4">
+                <h2 id="modal-title" class="text-xl font-bold"></h2>
+                <button id="modal-close" class="text-white text-opacity-70 hover:text-opacity-100">
+                    <i class="fa fa-times text-xl"></i>
+                </button>
+            </div>
+            <div id="modal-content" class="text-white text-opacity-90 leading-relaxed whitespace-pre-line">
+                <!-- 模态框内容将通过JavaScript动态填充 -->
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // 页面加载完成后执行
+        document.addEventListener('DOMContentLoaded', function() {
+            // 按钮点击事件处理
+            const buttons = {
+                'btn-ecosystem': {
+                    title: '生态详情介绍',
+                    content: 'PIWorld生态系统是由中华区33家派生态社区俱乐部联合发起组建的综合性区块链生态平台。我们致力于打造一个去中心化、安全、高效的区块链应用生态，为用户提供全方位的区块链服务和解决方案。\n\n生态系统涵盖了技术开发、社区建设、教育培训、应用落地等多个领域，旨在推动区块链技术的普及和应用，促进数字经济的发展。'
+                },
+                'btn-communities': {
+                    title: '33家派社区详情',
+                    content: '以下是参与PIWorld生态系统的33家派社区俱乐部详细信息：\n\n1. 北京先锋社区\n   负责人：张明\n   联系电话：+86 138-0001-0001\n\n2. 上海派友联盟\n   负责人：李强\n   联系电话：+86 138-0001-0002\n\n3. 广州区块链爱好者协会\n   负责人：王刚\n   联系电话：+86 138-0001-0003\n\n4. 深圳PI社区\n   负责人：赵伟\n   联系电话：+86 138-0001-0004\n\n5. 杭州西湖派社区\n   负责人：钱明\n   联系电话：+86 138-0001-0005\n\n6. 成都天府新区PI俱乐部\n   负责人：孙强\n   联系电话：+86 138-0001-0006\n\n7. 武汉光谷区块链社区\n   负责人：周刚\n   联系电话：+86 138-0001-0007\n\n8. 西安古城PI联盟\n   负责人：吴伟\n   联系电话：+86 138-0001-0008\n\n9. 南京钟山派社区\n   负责人：郑强\n   联系电话：+86 138-0001-0009\n\n10. 重庆山城PI俱乐部\n    负责人：王芳\n    联系电话：+86 138-0001-0010\n\n11. 天津滨海新区PI社区\n    负责人：李伟\n    联系电话：+86 138-0001-0011\n\n12. 苏州工业园区派友会\n    负责人：张强\n    联系电话：+86 138-0001-0012\n\n13. 厦门经济特区PI联盟\n    负责人：刘芳\n    联系电话：+86 138-0001-0013\n\n14. 青岛蓝色经济区PI社区\n    负责人：陈强\n    联系电话：+86 138-0001-0014\n\n15. 大连高新区区块链俱乐部\n    负责人：林芳\n    联系电话：+86 138-0001-0015\n\n16. 宁波梅山保税区PI社区\n    负责人：赵强\n    联系电话：+86 138-0001-0016\n\n17. 郑州航空港区PI联盟\n    负责人：孙芳\n    联系电话：+86 138-0001-0017\n\n18. 长沙湘江新区区块链社区\n    负责人：周强\n    联系电话：+86 138-0001-0018\n\n19. 济南高新区PI俱乐部\n    负责人：吴芳\n    联系电话：+86 138-0001-0019\n\n20. 合肥高新区区块链联盟\n    负责人：郑强\n    联系电话：+86 138-0001-0020\n\n21. 福州自贸区PI社区\n    负责人：王强\n    联系电话：+86 138-0001-0021\n\n22. 南宁东盟经开区PI俱乐部\n    负责人：李芳\n    联系电话：+86 138-0001-0022\n\n23. 昆明高新区区块链社区\n    负责人：张芳\n    联系电话：+86 138-0001-0023\n\n24. 贵阳大数据PI联盟\n    负责人：陈芳\n    联系电话：+86 138-0001-0024\n\n25. 兰州新区区块链俱乐部\n    负责人：林强\n    联系电话：+86 138-0001-0025\n\n26. 西宁高新区PI社区\n    负责人：赵芳\n    联系电话：+86 138-0001-0026\n\n27. 银川经开区区块链联盟\n    负责人：孙强\n    联系电话：+86 138-0001-0027\n\n28. 乌鲁木齐高新区PI俱乐部\n    负责人：周芳\n    联系电话：+86 138-0001-0028\n\n29. 拉萨经开区区块链社区\n    负责人：吴强\n    联系电话：+86 138-0001-0029\n\n30. 海口自贸区PI联盟\n    负责人：郑芳\n    联系电话：+86 138-0001-0030\n\n31. 哈尔滨新区区块链俱乐部\n    负责人：王强\n    联系电话：+86 138-0001-0031\n\n32. 长春高新区PI社区\n    负责人：李芳\n    联系电话：+86 138-0001-0032\n\n33. 南昌高新区区块链联盟\n    负责人：张芳\n    联系电话：+86 138-0001-0033\n\n这些社区共同构成了PIWorld生态系统的基础，为区块链技术在中国的发展做出了重要贡献。'
+                },
+                'btn-cemetery': {
+                    title: '生态公墓',
+                    content: '生态公墓是PIWorld生态系统中的重要组成部分，主要为中华区所有的社区和先锋提供最重要的资讯，包括国外项目方的资讯，以及国内所有社区乱象丛生的情况分析。\n\n我们致力于传播正能量，推动社区健康发展，为所有社区提供生态发展目标指导，并对所有社区进行客观分析，促进整个生态的良性发展。'
+                },
+                'btn-about': {
+                    title: '关于我们',
+                    content: 'PIWorld是一个由区块链爱好者和专业人士组成的综合性社区平台。我们致力于推动区块链技术的普及和应用，促进区块链行业的健康发展。\n\n联系方式：\n• 推特：@PIWorldOfficial\n• 电报群：t.me/PIWorldOfficial\n• TikTok国际群：@PIWorldGlobal\n• 邮箱：contact@piworld.com\n• 负责人电话：+86 138-0000-0000\n\n我们的使命是构建一个开放、包容、创新的区块链生态系统，为用户提供优质的服务和体验，推动数字经济的发展。'
+                }
+            };
+            
+            // 获取音效元素
+            const clickSounds = {
+                'btn-ecosystem': document.getElementById('click-sound-1'),
+                'btn-communities': document.getElementById('click-sound-2'),
+                'btn-cemetery': document.getElementById('click-sound-3'),
+                'btn-about': document.getElementById('click-sound-4')
+            };
+            
+            // 为每个按钮添加点击事件
+            Object.keys(buttons).forEach(btnId => {
+                document.getElementById(btnId).addEventListener('click', function() {
+                    // 播放对应音效
+                    const sound = clickSounds[btnId];
+                    if (sound) {
+                        sound.currentTime = 0;
+                        sound.play().catch(e => console.log('Audio play failed:', e));
+                    }
+                    // 显示模态框
+                    showModal(buttons[btnId].title, buttons[btnId].content);
+                });
+            });
+            
+            // 关闭模态框
+            document.getElementById('modal-close').addEventListener('click', function() {
+                hideModal();
+            });
+            
+            // 点击模态框外部关闭
+            document.getElementById('modal').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    hideModal();
+                }
+            });
+            
+            // 显示模态框函数
+            function showModal(title, content) {
+                document.getElementById('modal-title').textContent = title;
+                document.getElementById('modal-content').textContent = content;
+                document.getElementById('modal').classList.remove('hidden');
+                document.body.style.overflow = 'hidden'; // 防止背景滚动
+            }
+            
+            // 隐藏模态框函数
+            function hideModal() {
+                document.getElementById('modal').classList.add('hidden');
+                document.body.style.overflow = ''; // 恢复背景滚动
+            }
+            
+            // 添加触摸反馈效果
+            const touchButtons = document.querySelectorAll('.btn');
+            touchButtons.forEach(button => {
+                button.addEventListener('touchstart', function() {
+                    this.classList.add('bg-opacity-30');
+                });
+                
+                button.addEventListener('touchend', function() {
+                    this.classList.remove('bg-opacity-30');
+                });
+            });
+        });
+    </script>
+
+</body></html>
